@@ -1,3 +1,13 @@
+//--modalScript--//
+	$('#myModal').on('shown.bs.modal', function () {
+	$('#myInput').focus()
+});
+
+//--tableSort--//
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+
 //--shareEvent--//
 $("#btn-share").click(function() {
 	var shareHtml = "",

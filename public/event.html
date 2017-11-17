@@ -68,17 +68,62 @@
 			<div class="row">
 			  <div class="col-xs-12">url</div>
 			</div>
-			<br>
-			<div class="btn-group" role="group" aria-label="User action group">
-			  <a href="#addItemModal" data-toggle="modal" data-target="#addItemModal" class="btn btn-primary">Add Item</a>
-			  <a href="#" class="btn btn-primary" id="btn-share" data-modal-title="Share Event" data-facebook-label="Share on Facebook" data-twitter-label="Share on Twitter" data-twitter-text="Twitter Text" data-linkedin-label="Share on LinkedIn" data-linkedin-title="LinkedIn Title" data-linkedin-summary="LinkedIn Summary" data-email-label="Share via Email" data-email-subject="Email Subject">Share Event</a>
-			  <button type="button" class="btn btn-primary">Add to Profile</button>
-			    <div class="span pull-right alert alert-success fade">
-			      <button type="button" class="close" data-dismiss="alert">×</button>
-			      <strong>Success!</strong> Event added to your profile.
-			    </div>
-			</div>
 		</div>
+
+		<div class="container">
+		  <h3>Items</h3>
+			<table id="eventItems" class="table table-striped" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Category</th>
+						<th>Item</th>
+						<th>Contributor</th>
+						<th>Amount</th>
+						<th>Description</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope=row>1</th>
+						<td>itemCategory</td>
+						<td>itemName</td>
+						<td>itemContributor</td>
+						<td>itemAmount</td>
+						<td>itemDescription</td>
+						<td><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <i class="fa fa-files-o" aria-hidden="true"></i> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+					</tr>
+					<tr>
+						<th scope=row>2</th>
+						<td>itemCategory</td>
+						<td>itemName</td>
+						<td>itemContributor</td>
+						<td>itemAmount</td>
+						<td>itemDescription</td>
+						<td><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <i class="fa fa-files-o" aria-hidden="true"></i> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+					</tr>
+					<tr>
+						<th scope=row>3</th>
+						<td>itemCategory</td>
+						<td>itemName</td>
+						<td>itemContributor</td>
+						<td>itemAmount</td>
+						<td>itemDescription</td>
+						<td><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <i class="fa fa-files-o" aria-hidden="true"></i> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+			<a href="#addItemModal" data-toggle="modal" data-target="#addItemModal" class="btn btn-primary">Add an Item</a>
+			<a href="#" class="btn btn-primary" id="btn-share" data-modal-title="Share Event" data-facebook-label="Share on Facebook" data-twitter-label="Share on Twitter" data-twitter-text="Twitter Text" data-linkedin-label="Share on LinkedIn" data-linkedin-title="LinkedIn Title" data-linkedin-summary="LinkedIn Summary" data-email-label="Share via Email" data-email-subject="Email Subject">Share Event</a>
+		  <button type="button" class="btn btn-primary">Add to Profile</button>
+		    <div class="span pull-right alert alert-success fade">
+		      <button type="button" class="close" data-dismiss="alert">×</button>
+		      <strong>Success!</strong> Event added to your profile.
+		    </div>
+		</div>
+
 	</div>
 </div>
 

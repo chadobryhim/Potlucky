@@ -1,5 +1,7 @@
 -- Created by Vertabelo (http://vertabelo.com)
 -- Last modification date: 2017-11-17 23:39:30.598
+DROP DATABASE IF EXISTS potLucky_db;
+
 CREATE DATABASE potLucky_db;
 
 USE potLucky_db;
@@ -52,6 +54,7 @@ CREATE TABLE PotluckUsers (
 );
 
 -- Table: UserType
+
 CREATE TABLE UserType (
     type int NOT NULL AUTO_INCREMENT,
     typeName varchar(10) NULL,

@@ -1,7 +1,7 @@
 USE potLucky_db;
 
 
-COMMENT 'Seeds the categories table and forgets it, it should not be edited except for at a system wide level';
+/*!'Seeds the categories table and forgets it, it should not be edited except for at a system wide level' */
 INSERT INTO Categories (categoryString)
 VALUES ("Appetizers" );
 
@@ -18,12 +18,15 @@ INSERT INTO Categories (categoryString)
 VALUES ("Other" );
 
 
-COMMENT 'Initializes the Usertypes table';
-INSERT INTO Categories (categoryString)
+COMMENT 'Initializes the Usertypes table table is fixed and can only be eddited ';
+INSERT INTO UserType (typeName)
 VALUES ("User" );
 
-INSERT INTO Categories (categoryString)
+INSERT INTO UserType (typeName)
 VALUES ("Admin" );
 
-INSERT INTO Categories (categoryString)
+INSERT INTO UserType (typeName)
 VALUES ("SuperAdmin" );
+
+SELECT * FROM Catergories;
+SELECT * FROM UserTYPE;

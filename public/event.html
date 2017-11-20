@@ -45,7 +45,7 @@
 
 	<div class="container">
 	<div class="jumbotron">
-		<div class="container">
+		<div id="target" class="container">
 		  <h2>eventName</h2>
 			<div class="row">
 			  <div class="col-xs-12">host</div>
@@ -63,7 +63,7 @@
 			  <div class="col-xs-12">location</div>
 			</div>
 			<div class="row">
-			  <div class="col-xs-12">details</div>
+			  <div class="col-xs-12">notes</div>
 			</div>
 			<div class="row">
 			  <div class="col-xs-12">url</div>
@@ -139,7 +139,7 @@
         <h4 class="modal-title" id="myModalLabel">Add Item</h4>
       </div>
       <div class="modal-body">
-				<form action="/action_page.php">
+				<form action="http://localhost:8080" method="POST">
 					<div class="form-group">
 					  <label for="itemCategory">Category:</label>
 					  <select class="form-control" id="itemCategory">
@@ -208,10 +208,39 @@
   </div>
 </div>
 
+<!-- Handlebars -->
+
+	<script id="template" type="text/x-handlebars-template">
+			<div class="container">
+			<h2>{{eventName}}</h2>
+			<div class="row">
+				<div class="col-xs-12"><strong>Host:</strong> {{host}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6"><strong>Contact:</strong> {{email}}</div>
+				<div class="col-xs-6">{{tel}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2"><strong>Details:</strong> {{date}}</div>
+				<div class="col-xs-2">{{timeStart}} - {{timeEnd}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">{{location}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12"><strong>Notes:</strong> {{notes}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">{{url}}</div>
+			</div>
+		</div>
+	</script>
+
 	<script src="https://use.fontawesome.com/4913a2be10.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><link rel="stylesheet" href="https://use.fontawesome.com/4913a2be10.js">
 	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="../node_modules/handlebars/dist/handlebars.js"></script>
 	<script type="text/javascript">
 		$('#myModal').on('shown.bs.modal', function () {
 	  $('#myInput').focus()

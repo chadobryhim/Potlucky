@@ -2,6 +2,7 @@
 var http = require("http");
 var dbURL= "otwsl2e23jrxcqvx.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
 var PORT = 8080;
+var path = require("path");
 
 var server = http.createServer(function(req, res) {
 
@@ -28,3 +29,7 @@ var server = http.createServer(function(req, res) {
 server.listen(PORT, function() {
   console.log("Server listening on: http://localhost:%s", PORT);
 });
+
+//routes
+require("./routes/htmlRoutes.js")(app);
+

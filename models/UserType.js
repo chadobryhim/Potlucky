@@ -5,12 +5,12 @@
 module.exports = function(sequelize, DataTypes){
   var UserType = sequelize.define('userType', {
     id: {
-        type: sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     userType: {
-      type: sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     }
   }, {

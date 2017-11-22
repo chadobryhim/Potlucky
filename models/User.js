@@ -3,18 +3,18 @@
 
 // the User type table is a pre genderated table that is used as a reference on other tables
 module.exports = function(sequelize, DataTypes) {
-  var User = connection.define('user', {
+  var User = sequelize.define('user', {
     id: {
-        type: sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     userToken: {
-      type:sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull: false
     },
     name: {
-      type:sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull: false
     }
   }, {

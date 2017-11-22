@@ -2,40 +2,40 @@
 'use strict';
 // the User type table is a pre genderated table that is used as a reference on other tables
 module.exports = function(sequelize, DataTypes) {
-  var Potluck = sequelize.define('potluck', {
+  var PotLuck = sequelize.define('potluck', {
     id: {
-        type: sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     date: {
-      type: sequelize.DATEONLY,
+      type: DataTypes.DATEONLY,
       allowNull: false
     },
     startTime: {
-      type: sequelize.TIME
+      type: DataTypes.TIME
     },
     endTime: {
-      type: sequelize.TIME
+      type: DataTypes.TIME
     },
     location: {
-      type: sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     },
     eventURL: {
-      type: sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     },
     phone: {
-      type: sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     email: {
-      type: sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     },
     details: {
-      type: sequelize.TEXT,
+      type: DataTypes.TEXT,
       allowNull: false
     }
   },

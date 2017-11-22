@@ -5,20 +5,20 @@
 module.exports = function(sequelize, DataTypes) {
   var Item = sequelize.define('item', {
     id: {
-        type: sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     assigned: {
-      type:sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull: true
     },
     item_name: {
-      type:sequelize.STRING,
+      type:DataTypes.STRING,
       allowNull: false
     },
     notes: {
-      type:sequelize.TEXT
+      type:DataTypes.TEXT
     }
   }, {
     classMethods: {
@@ -29,5 +29,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return Category;
+  return Item;
 };

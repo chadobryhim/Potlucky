@@ -3,7 +3,7 @@
 // the User type table is a pre genderated table that is used as a reference on other tables
 module.exports = function(sequelize, DataTypes) {
   var PotLuck = sequelize.define('potluck', {
-    id: {
+    potLuckId: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
@@ -37,6 +37,10 @@ module.exports = function(sequelize, DataTypes) {
     details: {
       type: DataTypes.TEXT,
       allowNull: false
+    },
+    staticURL: {
+      type: DataTypes.STRONG,
+      allowNull : false
     }
   },
   {

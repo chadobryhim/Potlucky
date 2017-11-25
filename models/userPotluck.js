@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
         primaryKey: true
     },
     userType: {
-      type: DataTypes.INTGER,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
   }, {

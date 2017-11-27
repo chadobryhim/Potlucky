@@ -1,8 +1,8 @@
 -- Created by Vertabelo (http://vertabelo.com)
 -- Last modification date: 2017-11-17 23:39:30.598
-DROP DATABASE IF EXISTS potLucky_db;
+DROP DATABASE IF EXISTS potLucky_db_test;
 
-CREATE DATABASE potLucky_db;
+CREATE DATABASE potLucky_db_test;
 
 USE potLucky_db;
 -- tables

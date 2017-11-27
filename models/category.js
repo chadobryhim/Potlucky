@@ -5,7 +5,7 @@
 module.exports = function(sequelize, DataTypes) {
 
   var Category = sequelize.define('category', {
-    id: {
+    categoryId: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
@@ -14,13 +14,6 @@ module.exports = function(sequelize, DataTypes) {
       type:DataTypes.STRING,
       allowNull: false
     }
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // Each of the burgers has one of the devourers associated with it (key is stored on the devourer)
-        Category.hasMany(models.item)
-      }
-    }
-  });
+  })
   return Category;
 };

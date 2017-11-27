@@ -5,9 +5,10 @@ var dbMethods = require('../controllers/dbMethod.js')
 
 // Extracts the sequelize connection from the models object
 var sequelizeConnection = models.sequelize;
-console.log(dbMethods);
+
+dbMethods.associate();
 
 
 
 // Sync the tables
-// sequelizeConnection.sync();
+sequelizeConnection.sync({force: true});

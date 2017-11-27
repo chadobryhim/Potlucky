@@ -42,15 +42,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull : false
     }
-  },
-  {
-    classMethods: {
-      associate: function(models) {
-        // Each of the burgers has one of the devourers associated with it (key is stored on the devourer)
-        PotLuck.hasMany(models.UserPotluck)
-        PotLuck.hasMany(models.Item)
-      }
-    }
   });
   return PotLuck;
 };

@@ -1,42 +1,42 @@
-'use strict';
+var db = require('../models');
 
-module.exports = function() {
-  var methods = {
+var methods = {
     //creates the assocations necessary to conenct all the tables in the db
     associate : function () {
       //user table has many in the potluck users
-      db.user.hasMany(db.userPotluck);
-      db.userPotluck.belongsTo(db.user);
+      db.user.hasMany(db.userPotluck, {as: 'UserPotluck', foreignKey: 'userId', sourceKey: 'userId'});
+      db.userPotluck.belongsTo(db.user,{as: 'UserPotluck', foreignKey: 'userId', sourceKey: 'userId'});
 
       //user types to userPotluck
-      db.userType.hasMany(db.userPotluck);
-      db.userPotluck.belongsTo(db.userType);
+      db.userType.hasMany(db.userPotluck, {as: 'UserType', foreignKey: 'userTypeId', sourceKey: 'userTypeId'});
+      db.userPotluck.belongsTo(db.userType, {as: 'UserType', foreignKey: 'userTypeId', sourceKey: 'userTypeId'});
 
       //potluck to user potlucks
-      db.potluck.hasMany(db.userPotluck);
-      db.userPotluck.belongsTo(db.potluck);
+      db.potluck.hasMany(db.userPotluck, {foreignKey: 'potLuckId', sourceKey: 'potLuckId'});
+      db.userPotluck.belongsTo(db.potluck, {foreignKey: 'potLuckId', sourceKey: 'potLuckId'});
 
       //potlucks to potLuckItems
-      db.potluck.hasMany(db.item);
-      db.item.belongsTo(db.potluck);
+      db.potluck.hasMany(db.item, {foreignKey: 'potLuckId', sourceKey: 'potLuckId'});
+      db.item.belongsTo(db.potluck, {foreignKey: 'potLuckId', sourceKey: 'potLuckId'});
 
       //category to potLuckItems
-      db.category.hasMany(db.item);
-      db.item.belongsTo(db.category);
+      db.category.hasMany(db.item, {foreignKey: 'categoryId', sourceKey: 'categoryId'});
+      db.item.belongsTo(db.category, {foreignKey: 'categoryId', sourceKey: 'categoryId'});
     },
 
 
     initTables : function(){
       //makes the initial table and makes sure it is the only stuff for it for both User type and categories
-      models.userType.create({userType: "User"});
-      models.userType.create({userType: "Admin"});
-      models.userType.create({userType: "SuperAdmin"});
 
-      models.category.create({category: "Appetizers"});
-      models.category.create({category: "Entrees"});
-      models.category.create({category: "Desserts"});
-      models.category.create({category: "Drinks"});
-      models.category.create({category: "Other"});
+      db.userType.build({userType: "User"});
+      db.userType.build({userType: "Admin"});
+      db.userType.build({userType: "SuperAdmin"});
+
+      db.category.build({category: "Appetizers"});
+      db.category.build({category: "Entrees"});
+      db.category.build({category: "Desserts"});
+      db.category.build({category: "Drinks"});
+      db.category.build({category: "Other"});
     },
 
     //createss a random string to make as the id for the the evnts
@@ -55,7 +55,7 @@ module.exports = function() {
     loginNTest : function(userID, thisName) {
       var test = db.user.count({ where: { userToken: userID } })
       if (test === 0) {
-        models.user.create({
+        db.user.create({
           userToken: userID,
           name: thisName
         });
@@ -98,7 +98,7 @@ module.exports = function() {
     userEvents: function(userToken){
 
       // Sequelize Query to get all burgers from database (and join them to their devourers, if applicable)
-      models.UserPotluck.findAll({
+      db.UserPotluck.findAll({
         where : {
           userToken: userToken
         },
@@ -112,7 +112,7 @@ module.exports = function() {
     },
 
     potLuckItems: function(potLuckId){
-      models.items.finalAll({
+      db.items.finalAll({
         where :{
           potLuckId:potLuckId
         }.then(function(data){
@@ -121,7 +121,6 @@ module.exports = function() {
         })
       })
     }
-  }
-
-  return methods;
 };
+
+module.exports = methods;

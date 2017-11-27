@@ -15,16 +15,6 @@ module.exports = function(sequelize, DataTypes) {
     },
   }, {
     timestamps: false
-  },
-  {
-    classMethods: {
-      associate: function(models) {
-        // Each of the burgers has one of the devourers associated with it (key is stored on the devourer)
-        UserPotluck.belongsTo(models.UserType);
-        UserPotluck.belongsTo(models.User);
-        UserPotluck.belongsTo(models.Potluck);
-      }
-    }
   });
   return UserPotluck;
 };

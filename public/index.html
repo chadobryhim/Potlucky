@@ -15,6 +15,17 @@
 
 </head>
 <body>
+
+	<!--Facebook SDK-->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11';
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+
 	<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -38,6 +49,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#loginModal" data-toggle="modal" data-target="#loginModal">Login</a></li>
+				<li><div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -63,7 +75,28 @@
 	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">
 	  Get Started
 	</button>
-</div>
+
+	<!--Facebook Login Button -->
+	<script>
+	var finished_rendering = function() {
+	console.log("finished rendering plugins");
+	var spinner = document.getElementById("spinner");
+	spinner.removeAttribute("style");
+	spinner.removeChild(spinner.childNodes[0]);
+	}
+	FB.Event.subscribe('xfbml.render', finished_rendering);
+	</script>
+
+		<div
+		class="fb-login-button"
+		data-max-rows="1"
+		data-size="large"
+		data-button-type="continue_with"
+		data-show-faces="false"
+		data-auto-logout-link="true"
+		data-use-continue-as="true"
+		></div>
+
 </div>
 
 <!-- Modal -->
@@ -108,6 +141,27 @@
 		$('#myModal').on('shown.bs.modal', function () {
 	  $('#myInput').focus()
 	})
+	</script>
+	<script>
+  		window.fbAsyncInit = function() {
+    	FB.init({
+      		appId      : '{your-app-id}',
+      		cookie     : true,
+      		xfbml      : true,
+      		version    : '{latest-api-version}'
+    	});
+      
+    	FB.AppEvents.logPageView();   
+      
+  	};
+
+  		(function(d, s, id){
+     		var js, fjs = d.getElementsByTagName(s)[0];
+     		if (d.getElementById(id)) {return;}
+     		js = d.createElement(s); js.id = id;
+     		js.src = "https://connect.facebook.net/en_US/sdk.js";
+     		fjs.parentNode.insertBefore(js, fjs);
+   		}(document, 'script', 'facebook-jssdk'));
 	</script>
 
 </body>

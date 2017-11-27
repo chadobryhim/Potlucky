@@ -47,7 +47,7 @@
 <div class="jumbotron">
 	<div class="container">
 	  <h2>Event Administration</h2>
-	  <form action="/action_page.php">
+	  <form action="http://localhost:8080" method="POST">
 			<div class="form-group">
 	      <label for="text">Host Name:</label>
 	      <input type="text" class="form-control" id="host" placeholder="Your name" name="host">
@@ -81,8 +81,8 @@
 	      <input type="text" class="form-control" id="location" placeholder="123 Street, City, State" name="location">
 	    </div>
 			<div class="form-group">
-	      <label for="text">Aditional Details:</label>
-	      <textarea class="form-control" rows="3" input type="text" id="details" placeholder="Time of meal, theme info, explicit directions, alcohol policy, links to more information, etc." name="details"></textarea>
+	      <label for="text">Aditional Notes:</label>
+	      <textarea class="form-control" rows="3" input type="text" id="notes" placeholder="Time of meal, theme info, explicit directions, alcohol policy, links to more information, etc." name="notes"></textarea>
 	    </div>
 			<div class="form-group">
 	      <label for="url">External Link:</label>

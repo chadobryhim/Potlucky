@@ -45,7 +45,7 @@
 
 	<div class="container">
 	<div class="jumbotron">
-		<div class="container">
+		<div id="target" class="container">
 		  <h2>eventName</h2>
 			<div class="row">
 			  <div class="col-xs-12">host</div>
@@ -63,22 +63,67 @@
 			  <div class="col-xs-12">location</div>
 			</div>
 			<div class="row">
-			  <div class="col-xs-12">details</div>
+			  <div class="col-xs-12">notes</div>
 			</div>
 			<div class="row">
 			  <div class="col-xs-12">url</div>
 			</div>
-			<br>
-			<div class="btn-group" role="group" aria-label="User action group">
-			  <a href="#addItemModal" data-toggle="modal" data-target="#addItemModal" class="btn btn-primary">Add Item</a>
-			  <a href="#" class="btn btn-primary" id="btn-share" data-modal-title="Share Event" data-facebook-label="Share on Facebook" data-twitter-label="Share on Twitter" data-twitter-text="Twitter Text" data-linkedin-label="Share on LinkedIn" data-linkedin-title="LinkedIn Title" data-linkedin-summary="LinkedIn Summary" data-email-label="Share via Email" data-email-subject="Email Subject">Share Event</a>
-			  <button type="button" class="btn btn-primary">Add to Profile</button>
-			    <div class="span pull-right alert alert-success fade">
-			      <button type="button" class="close" data-dismiss="alert">×</button>
-			      <strong>Success!</strong> Event added to your profile.
-			    </div>
-			</div>
 		</div>
+
+		<div class="container">
+		  <h3>Items</h3>
+			<table id="eventItems" class="table table-striped" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Category</th>
+						<th>Item</th>
+						<th>Contributor</th>
+						<th>Amount</th>
+						<th>Description</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope=row>1</th>
+						<td>itemCategory</td>
+						<td>itemName</td>
+						<td>itemContributor</td>
+						<td>itemAmount</td>
+						<td>itemDescription</td>
+						<td><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <i class="fa fa-files-o" aria-hidden="true"></i> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+					</tr>
+					<tr>
+						<th scope=row>2</th>
+						<td>itemCategory</td>
+						<td>itemName</td>
+						<td>itemContributor</td>
+						<td>itemAmount</td>
+						<td>itemDescription</td>
+						<td><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <i class="fa fa-files-o" aria-hidden="true"></i> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+					</tr>
+					<tr>
+						<th scope=row>3</th>
+						<td>itemCategory</td>
+						<td>itemName</td>
+						<td>itemContributor</td>
+						<td>itemAmount</td>
+						<td>itemDescription</td>
+						<td><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <i class="fa fa-files-o" aria-hidden="true"></i> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+			<a href="#addItemModal" data-toggle="modal" data-target="#addItemModal" class="btn btn-primary">Add an Item</a>
+			<a href="#" class="btn btn-primary" id="btn-share" data-modal-title="Share Event" data-facebook-label="Share on Facebook" data-twitter-label="Share on Twitter" data-twitter-text="Twitter Text" data-linkedin-label="Share on LinkedIn" data-linkedin-title="LinkedIn Title" data-linkedin-summary="LinkedIn Summary" data-email-label="Share via Email" data-email-subject="Email Subject">Share Event</a>
+		  <button type="button" class="btn btn-primary">Add to Profile</button>
+		    <div class="span pull-right alert alert-success fade">
+		      <button type="button" class="close" data-dismiss="alert">×</button>
+		      <strong>Success!</strong> Event added to your profile.
+		    </div>
+		</div>
+
 	</div>
 </div>
 
@@ -94,7 +139,7 @@
         <h4 class="modal-title" id="myModalLabel">Add Item</h4>
       </div>
       <div class="modal-body">
-				<form action="/action_page.php">
+				<form action="http://localhost:8080" method="POST">
 					<div class="form-group">
 					  <label for="itemCategory">Category:</label>
 					  <select class="form-control" id="itemCategory">
@@ -139,8 +184,21 @@
       </div>
       <div class="modal-body">
         Facebook Login
-				<br>Google Login
-				<br>Twitter Login
+		
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+  			var js, fjs = d.getElementsByTagName(s)[0];
+  			if (d.getElementById(id)) return;
+  			js = d.createElement(s); js.id = id;
+  			js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=641150372941911';
+  			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+		</script>
+
+		<div class="fb-login-button" data-width="20" data-max-rows="1" data-size="small" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
+
+				<!-- <br>Google Login
+				<br>Twitter Login -->
       </div>
     </div>
   </div>
@@ -163,14 +221,81 @@
   </div>
 </div>
 
+<!-- Handlebars -->
+
+	<script id="template" type="text/x-handlebars-template">
+			<div class="container">
+			<h2>{{eventName}}</h2>
+			<div class="row">
+				<div class="col-xs-12"><strong>Host:</strong> {{host}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6"><strong>Contact:</strong> {{email}}</div>
+				<div class="col-xs-6">{{tel}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2"><strong>Details:</strong> {{date}}</div>
+				<div class="col-xs-2">{{timeStart}} - {{timeEnd}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">{{location}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12"><strong>Notes:</strong> {{notes}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">{{url}}</div>
+			</div>
+		</div>
+	</script>
+
 	<script src="https://use.fontawesome.com/4913a2be10.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><link rel="stylesheet" href="https://use.fontawesome.com/4913a2be10.js">
 	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="../node_modules/handlebars/dist/handlebars.js"></script>
 	<script type="text/javascript">
 		$('#myModal').on('shown.bs.modal', function () {
 	  $('#myInput').focus()
 	})
+	</script>
+
+	<script>
+  		window.fbAsyncInit = function() {
+    		FB.init({
+    		  appId      : '{641150372941911}',
+    		  cookie     : true,
+    		  xfbml      : true,
+    		  version    : '{v2.11}'
+   			});
+      
+    	FB.AppEvents.logPageView();   
+      
+  		};
+
+  		(function(d, s, id){
+     		var js, fjs = d.getElementsByTagName(s)[0];
+     		if (d.getElementById(id)) {return;}
+     		js = d.createElement(s); js.id = id;
+     		js.src = "https://connect.facebook.net/en_US/sdk.js";
+     		fjs.parentNode.insertBefore(js, fjs);
+  		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	<script>
+		'use strict';
+		FB.getLoginStatus(function(response) {
+			statusChangeCallback(response);
+		});
+
+		{
+			status: 'connected',
+			authResponse: {
+				accessToken: '...',
+				expiresIn: '...',
+				signedRequest: '...',
+				userID: '...'
+			}
+		}
 	</script>
 
 </body>

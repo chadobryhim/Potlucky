@@ -1,3 +1,39 @@
+//--handlebarsEvent--//
+window.onload = function() {
+  //Grab the inline template
+  var template = document.getElementById('template').innerHTML;
+
+  //Compile the template
+  var compiled_template = Handlebars.compile(template);
+
+  //Render the data into the template
+  var rendered = compiled_template({
+    eventName: "BootCamp Buffet",
+    host: "Chad 'Jimmy Buffet' O'Bryhim",
+    email: "wastingawayagain@margaritaville.com",
+    tel: "888 888-8888",
+    date: "12/05/2017",
+    timeStart: "5:00pm",
+    timeEnd: "11:00pm",
+    location: "Somewhere, Jamaica",
+    notes: "It's pronounced BootCamp 'Buff-it'",
+    url: "https://www.margaritaville.com/party",
+  });
+
+  //Overwrite the contents of #target with the renderer HTML
+  document.getElementById('target').innerHTML = rendered;
+}
+
+//--modalScript--//
+	$('#myModal').on('shown.bs.modal', function () {
+	$('#myInput').focus()
+});
+
+//--tableSort--//
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+
 //--shareEvent--//
 $("#btn-share").click(function() {
 	var shareHtml = "",

@@ -18,6 +18,11 @@ dbMethods.associate();
 sequelizeConnection.sync({force: true});
 //////////////////////////////////////////////////////////////////////
 
+// Use express.static to serve the public folder as a static directory
+app.use(express.static("public"));
+var router = require('./routes/htmlRoutes.js');
+app.use('/', router);
+
 var server = http.createServer(function(req, res) {
 
   // Saving the request method as a variable.
@@ -29,6 +34,8 @@ var server = http.createServer(function(req, res) {
     console.log("You just posted some data to the server!");
     console.log("Your data was " + requestData);
   });
+  //routes
+
 
   // When the request has ended...
   req.on("end", function() {
@@ -40,9 +47,6 @@ var server = http.createServer(function(req, res) {
 });
 
 // Starts our server.
-server.listen(PORT, function() {
+app.listen(PORT, function() {
   console.log("Server listening on: http://localhost:%s", PORT);
 });
-
-//routes
-require("./routes/htmlRoutes.js")(app);

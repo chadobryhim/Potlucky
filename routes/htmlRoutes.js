@@ -1,10 +1,11 @@
-//dependency 
+//dependency
 var path = require("path");
 
 //routes
 module.exports = function(app) {
 	app.get("/", function(request, result) {
 		result.sendFile(path.join(__dirname + "/../public/index.html"));
+		consule.log("going to /")
 	});
 
 	debugger;

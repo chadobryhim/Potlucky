@@ -20,8 +20,8 @@ var db        = {};
 var JAWSDB_URL= "otwsl2e23jrxcqvx.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
 
 if (config.use_env_variable) {
-  //var sequelize = new Sequelize(process.env[config.use_env_variable]);
-  var sequelize = new Sequelize(process.env.JAWSDB_URL);
+  var sequelize = new Sequelize(process.env[config.use_env_variable]);
+  //var sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
   var sequelize = new Sequelize(config.database, config.username, config.password, config);
 }

@@ -1,16 +1,16 @@
 {
   "development": {
     "username": "root",
-    "password": "Iforget123",
+    "password": "",
     "database": "potlucky_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": null,
+    "username": "a1pvlqz3i9utf12o",
+    "password": "a34pscm31d4vb75v",
     "database": "database_test",
-    "host": "127.0.0.1",
+    "host": "otwsl2e23jrxcqvx.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "production": {

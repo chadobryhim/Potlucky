@@ -5,6 +5,7 @@ var PORT = process.env.PORT || 9000;
 var path = require("path");
 var express = require("express");
 var app = express();
+var bodyParser = require("body-parser");
 
 //the section for setting up the db
 ////////////////////////////////////////////////////////////
@@ -47,6 +48,12 @@ var server = http.createServer(function(req, res) {
   });
 
 });
+
+//body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.text());
+app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 
 // Starts our server.
 app.listen(PORT, function() {

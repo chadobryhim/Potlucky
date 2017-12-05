@@ -1,9 +1,22 @@
 // Dependencies
 var http = require("http");
 var dbURL= "otwsl2e23jrxcqvx.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
-var PORT = 8080;
+var PORT = process.env.PORT || 9000;
 var path = require("path");
+var express = require("express");
 var app = express();
+
+//the section for setting up the db
+////////////////////////////////////////////////////////////
+
+var dbMethods = require('./controllers/dbMethod.js');
+var models = require('./models'); // Pulls out the potluck Models
+
+// Extracts the sequelize connection from the models object makes the various assocation
+var sequelizeConnection = models.sequelize;
+dbMethods.associate();
+sequelizeConnection.sync({force: true});
+//////////////////////////////////////////////////////////////////////
 
 var server = http.createServer(function(req, res) {
 
@@ -33,4 +46,3 @@ server.listen(PORT, function() {
 
 //routes
 require("./routes/htmlRoutes.js")(app);
-

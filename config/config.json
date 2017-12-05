@@ -9,7 +9,7 @@
   "test": {
     "username": "a1pvlqz3i9utf12o",
     "password": "a34pscm31d4vb75v",
-    "database": "database_test",
+    "database": "PotLuckDB",
     "host": "otwsl2e23jrxcqvx.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },

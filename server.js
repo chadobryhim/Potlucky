@@ -23,6 +23,8 @@ app.use(express.static("public"));
 var router = require('./routes/htmlRoutes.js');
 app.use('/', router);
 
+
+//currently a dead variable pending a review
 var server = http.createServer(function(req, res) {
 
   // Saving the request method as a variable.

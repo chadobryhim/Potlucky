@@ -15,6 +15,14 @@
 
 </head>
 <body>
+	<div id="fb-root"></div>
+			<script>(function(d, s, id) {
+  		var js, fjs = d.getElementsByTagName(s)[0];
+  		if (d.getElementById(id)) return;
+  		js = d.createElement(s); js.id = id;
+  		js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=641150372941911';
+  		fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));</script>
 
 	<!--facebook analytics-->
 	<script>
@@ -197,6 +205,8 @@
       </div>
     </div>
   </div>
+			<div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="7"></div>
+
 </div>
 
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal">

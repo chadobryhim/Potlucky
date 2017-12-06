@@ -13,10 +13,7 @@ module.exports = function(app) {
 	app.get("/event", function(request, result) {
 		result.sendFile(path.join(__dirname + "/../public/event.html"));
 	});
-	app.get("/event/:UserId/:eventID", function (req, res){
 
-		result.sendFile(path.join(__dirname + "/../public/event.html"));
-	});
 
 	app.get("/event-admin", function(request, result) {
 		result.sendFile(path.join(__dirname + "/../public/event-admin.html"));

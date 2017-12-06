@@ -27,16 +27,18 @@ var methods = {
 
     initTables : function(){
       //makes the initial table and makes sure it is the only stuff for it for both User type and categories
+      console.log("createing tables")
 
-      db.userType.build({userType: "User"});
-      db.userType.build({userType: "Admin"});
-      db.userType.build({userType: "SuperAdmin"});
+      db.userType.create({userType: "User"});
+      db.userType.create({userType: "Admin"});
+      db.userType.create({userType: "SuperAdmin"});
 
-      db.category.build({category: "Appetizers"});
-      db.category.build({category: "Entrees"});
-      db.category.build({category: "Desserts"});
-      db.category.build({category: "Drinks"});
-      db.category.build({category: "Other"});
+      db.category.create({category: "Appetizers"});
+      db.category.create({category: "Entrees"});
+      db.category.create({category: "Desserts"});
+      db.category.create({category: "Drinks"});
+      db.category.create({category: "Other"});
+      console.log("built tables")
     },
 
     //createss a random string to make as the id for the the evnts

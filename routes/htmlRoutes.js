@@ -1,6 +1,6 @@
 //dependency
 var path = require("path");
-
+var dbMethod = require("../controllers/dbMethod.js")
 //routes
 module.exports = function(app) {
 	app.get("/", function(request, result) {
@@ -11,6 +11,10 @@ module.exports = function(app) {
 	debugger;
 
 	app.get("/event", function(request, result) {
+		result.sendFile(path.join(__dirname + "/../public/event.html"));
+	});
+	app.get("/event/:UserId/:eventID", function (req, res){
+
 		result.sendFile(path.join(__dirname + "/../public/event.html"));
 	});
 

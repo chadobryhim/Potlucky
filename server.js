@@ -16,7 +16,9 @@ var models = require('./models'); // Pulls out the potluck Models
 // Extracts the sequelize connection from the models object makes the various assocation
 var sequelizeConnection = models.sequelize;
 dbMethods.associate();
-sequelizeConnection.sync({force: true});
+
+
+sequelizeConnection.sync({force: true}).then(dbMethods.initTables);
 //////////////////////////////////////////////////////////////////////
 
 // Use express.static to serve the public folder as a static directory

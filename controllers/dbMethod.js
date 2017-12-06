@@ -55,10 +55,10 @@ var methods = {
 
     //takes the User token from the Facebook Oath, tests the token in the db, and if it does not exist it creates an entry in our database
     loginNTest : function(userID, thisName) {
-      var test = db.user.count({ where: { userToken: userID } })
+      var test = db.user.count({ where: { fbID: userID } })
       if (test === 0) {
         db.user.create({
-          userToken: userID,
+          fbID: userID,
           name: thisName
         });
       }
@@ -67,13 +67,16 @@ var methods = {
     //creates an event based on a sumbission object that gets posted from the front
     createEvent : function(submission, id) {
       var  text,
-            test;
+            test,
+            plID;
+    //tests to be sure that the "static" id hasn't been used before
       do {
 
         text = makeid();
         test = db.potluck.count({ where: { staticURL: text } })
       } while (test != 0);
-      db.Potluck.create({
+      //creates the entry for the potluck
+      db.potlucks.create({
         date : submission.date,
         startTime:submission.startTime,
         endTime: submission.endTime,
@@ -83,26 +86,46 @@ var methods = {
         details: submission.details,
         staticURL: text
       });
-      db.UserPotluck.create({
-        userType: 1
+      //finds the ID of the entry we just submitted
+      db.potlucks.findAll({
+        where : {
+          staticURL: staticURL
+        }).then(function(data){
+          var userObject = { potluck: data };
+          plID = data.potLuckId;
+        });
+      //creates an entry onto the userPotluck tablewith the new potluck id and other relevent info
+      db.userpotluck.create({
+        userTypeId: 2,
+        userId: id,
+        potLuckId: plID
+      });
+    },
+    //Creates a non Admin user to the table (currently the same as before but hopefully we can authenticate it)
+    addUserPotluck : function(UId,PLId){
+      db.userPotluck.create({
+        userType: 1,
+        userId: UId,
+        potLuckId: PLId
       });
     },
 
     //adds an item to the table.
-    addItem : function(submission, potluckID) {
+    addItem : function(submission, PlID) {
       db.Item.create({
         assigned: submission.assigned,
         item_name: submission.item_name,
-        notes: sumbission.notes
+        notes: sumbission.notes,
+        potLuckId: plID
       });
     },
 
-    userEvents: function(userToken){
+    userEvents: function(fbID){
 
       // Sequelize Query to get all burgers from database (and join them to their devourers, if applicable)
       db.UserPotluck.findAll({
         where : {
-          userToken: userToken
+          fbID: fbID
         },
         include: [{model: models.PotLuck}]
       }).then(function(data){

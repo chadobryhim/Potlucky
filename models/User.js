@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
         autoIncrement: true,
         primaryKey: true
     },
-    userToken: {
+    fbID: {
       type:DataTypes.STRING,
       allowNull: false
     },
@@ -17,6 +17,8 @@ module.exports = function(sequelize, DataTypes) {
       type:DataTypes.STRING,
       allowNull: false
     }
+  }, {
+    timestamps: false
   });
   return User;
 };

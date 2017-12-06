@@ -27,30 +27,6 @@ var router = require('./routes/htmlRoutes.js');
 app.use('/', router);
 
 
-//currently a dead variable pending a review
-var server = http.createServer(function(req, res) {
-
-  // Saving the request method as a variable.
-  var requestData = "";
-
-  // When the server receives data, it will add it to requestData.
-  req.on("data", function(data) {
-    requestData += data;
-    console.log("You just posted some data to the server!");
-    console.log("Your data was " + requestData);
-  });
-  //routes
-
-
-  // When the request has ended...
-  req.on("end", function() {
-    res.write("<html><head><h1>Thank You!</h1></head><body>");
-    res.write("</body></html>");
-    res.end();
-  });
-
-});
-
 //body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));

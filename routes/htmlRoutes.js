@@ -14,25 +14,30 @@ module.exports = function(app) {
 //                      Read Methods                                      //
 ////////////////////////////////////////////////////////////////////////////
 
-	//the page for a profile with no data
-	app.get("/profile", function(request, result) {
-		result.sendFile(path.join(__dirname + "/../public/profile.html"));
-	});
+////////////Profile Pages//////////////////////////////////////////////////
 
-	//login to the page from the profile page
-	app.get("/profile/login/:fbId", function(req, res) {
-		//need to get name from fb
-		var name = "test"
-		dbMethod.loginNTest(req.params.fbId,name);
-		var id = req.params.id
-		res.redirect('/profile/'+id);
-	});
+		//the page for a profile with no data
+		app.get("/profile", function(request, result) {
+			result.sendFile(path.join(__dirname + "/../public/profile.html"));
+		});
 
-	//loads the page at a specific profile ID which is gotten when you write now we should run a script to check if we have oath
-	app.get("/profile/:id", function(req, res) {
-		var object = dbMethod.userEvents(req.params.fbId);
-		//sends the json to the handlebars page
-	});
+		//login to the page from the profile page
+		app.get("/profile/login/:fbId", function(req, res) {
+			//need to get name from fb
+			var name = "test"
+			dbMethod.loginNTest(req.params.fbId,name);
+			var id = req.params.id
+			res.redirect('/profile/'+id);
+		});
+
+		//loads the page at a specific profile ID which is gotten when you write now we should run a script to check if we have oath
+		app.get("/profile/:id", function(req, res) {
+			var object = dbMethod.userEvents(req.params.fbId);
+			//sends the json to the handlebars page
+		});
+
+//////////Event Pages//////////////////////////////////////////////////////
+
 	//the lading page for an unspeciffied event page
 	app.get("/event", function(request, result) {
 		result.sendFile(path.join(__dirname + "/../public/event.html"));

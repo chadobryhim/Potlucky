@@ -1,6 +1,10 @@
 var db = require('../models');
 
 var methods = {
+
+//////////////////////////////////////////////////////////////////////////////
+//                        For Intializing the Sequelize                     //
+//////////////////////////////////////////////////////////////////////////////
     //creates the assocations necessary to conenct all the tables in the db
     associate : function () {
       //user table has many in the potluck users
@@ -40,7 +44,9 @@ var methods = {
       db.category.create({category: "Other"});
       console.log("built tables")
     },
-
+//////////////////////////////////////////////////////////////////////////////
+//                        Testing and Random Generator                      //
+//////////////////////////////////////////////////////////////////////////////
     //createss a random string to make as the id for the the evnts
     makeid : function() {
       var text = "";
@@ -51,7 +57,6 @@ var methods = {
 
       return text;
     },
-
 
     //takes the User token from the Facebook Oath, tests the token in the db, and if it does not exist it creates an entry in our database
     loginNTest : function(userID, thisName) {
@@ -64,7 +69,6 @@ var methods = {
       }
       return fbID;
     },
-
 
     //tests if a user is admin of an event and if they are it returns true
     adminTest : function(userID,eventID) {
@@ -82,6 +86,10 @@ var methods = {
             }
         });
     },
+
+//////////////////////////////////////////////////////////////////////////////
+//                        Creation Events                                   //
+//////////////////////////////////////////////////////////////////////////////
     //creates an event based on a sumbission object that gets posted from the front
     createEvent : function(submission, id) {
       var  text,
@@ -138,8 +146,11 @@ var methods = {
       });
     },
 
-    userEvents: function(fbID){
+//////////////////////////////////////////////////////////////////////////////
+//                        Reading events                                    //
+//////////////////////////////////////////////////////////////////////////////
 
+    userEvents: function(fbID){
       // Sequelize Query to get all burgers from database (and join them to their devourers, if applicable)
       db.UserPotluck.findAll({
         where : {
@@ -149,7 +160,6 @@ var methods = {
       }).then(function(data){
         var userObject = { potluck: data };
         return userObject;
-
       });
     },
     //pulls specifically the details for the potluck itself
@@ -173,7 +183,20 @@ var methods = {
           return potluckItem
         })
       })
+    },
+//////////////////////////////////////////////////////////////////////////////
+//                        Updateevent                                       //
+//////////////////////////////////////////////////////////////////////////////
+    updateUser: function(fbID, fullName){
+
+    },
+    updateEvent: function(eventID, object){
+
+    },
+    updateItem: function(itemID,object){
+
     }
 };
+
 
 module.exports = methods;

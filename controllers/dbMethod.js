@@ -62,8 +62,26 @@ var methods = {
           name: thisName
         });
       }
+      return fbID;
     },
 
+
+    //tests if a user is admin of an event and if they are it returns true
+    adminTest : function(userID,eventID) {
+      db.userPotluck.findAll({
+        where: {
+          userId: req.params.userID,
+          potLuckId: req.params.eventID
+        }
+      }).then(function(data){
+            if (data.userTypeId >= 2) {
+              return true;
+            }
+            else {
+              return false;
+            }
+        });
+    },
     //creates an event based on a sumbission object that gets posted from the front
     createEvent : function(submission, id) {
       var  text,
@@ -90,7 +108,7 @@ var methods = {
       db.potlucks.findAll({
         where : {
           staticURL: staticURL
-        }).then(function(data){
+        }}).then(function(data){
           var userObject = { potluck: data };
           plID = data.potLuckId;
         });
@@ -127,15 +145,25 @@ var methods = {
         where : {
           fbID: fbID
         },
-        include: [{model: models.PotLuck}]
+        include: [{model: models.potluck}]
       }).then(function(data){
         var userObject = { potluck: data };
-        console.log(data);
         return userObject;
 
       });
     },
-
+    //pulls specifically the details for the potluck itself
+    potLuckDetails : function(potLuckID) {
+      db.potluck.findAll({
+        where: {
+          potLuckId : potLuckID
+        }
+      }).then(function(data) {
+        var potluckObject = data;
+        return potluckObject;
+      })
+    },
+    //pulls the item details of the potluck
     potLuckItems: function(potLuckId){
       db.items.finalAll({
         where :{

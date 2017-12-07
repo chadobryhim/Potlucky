@@ -88,5 +88,17 @@ module.exports = function(app) {
 /////////////////////////////////////////////////////////////////////////
 //                        Delete Methods                              //
 ////////////////////////////////////////////////////////////////////////
-
+		//destroys the user
+	 app.get("/destroy/:fbID", function(req,res) {
+		 dbMethod.deleteUser(req.params.fbID);
+		 res.redirect("/index");
+	 });
+	 app.get("/destroy/:eventID", function(req,res) {
+		 dbMethod.deleteEvent(req.params.eventID);
+		 res.redirect("/index");
+	 });
+	 app.get("/destroy/:itemID", function(req,res) {
+		 dbMethod.deleteItem(req.params.itemID);
+		 res.redirect("/index");
+	 });
 }

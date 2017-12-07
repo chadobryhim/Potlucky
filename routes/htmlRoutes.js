@@ -65,7 +65,7 @@ module.exports = function(app) {
 		//tests for admin status
 		adminTest = dbMethod.adminTest(req.params.fbID, req.params.eventID);
 		var eventDetails = dbMethod.potLuckDetails(req.params.eventID);
-		var eventDetails = dbMethod.potLuckItems(req.params.eventID);
+		var eventItems = dbMethod.potLuckItems(req.params.eventID);
 		//send the two obejcts to an event page
 	});
 
@@ -79,6 +79,14 @@ module.exports = function(app) {
 
 /////////////////////////////////////////////////////////////////////////
 //                        Update Methods                              //
+////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////
+//                        Create Methods                            //
+////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////
+//                        Delete Methods                              //
 ////////////////////////////////////////////////////////////////////////
 
 }

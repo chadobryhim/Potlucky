@@ -8,23 +8,23 @@ var methods = {
     //creates the assocations necessary to conenct all the tables in the db
     associate : function () {
       //user table has many in the potluck users
-      db.user.hasMany(db.userPotluck, {as: 'UserPotluck', foreignKey: 'userId', sourceKey: 'userId'});
+      db.user.hasMany(db.userPotluck, {as: 'UserPotluck', foreignKey: 'userId', sourceKey: 'userId', onDelete: 'cascade'});
       db.userPotluck.belongsTo(db.user,{as: 'UserPotluck', foreignKey: 'userId', sourceKey: 'userId'});
 
       //user types to userPotluck
-      db.userType.hasMany(db.userPotluck, {as: 'UserType', foreignKey: 'userTypeId', sourceKey: 'userTypeId'});
+      db.userType.hasMany(db.userPotluck, {as: 'UserType', foreignKey: 'userTypeId', sourceKey: 'userTypeId', onDelete: 'cascade'});
       db.userPotluck.belongsTo(db.userType, {as: 'UserType', foreignKey: 'userTypeId', sourceKey: 'userTypeId'});
 
       //potluck to user potlucks
-      db.potluck.hasMany(db.userPotluck, {foreignKey: 'potLuckId', sourceKey: 'potLuckId'});
+      db.potluck.hasMany(db.userPotluck, {foreignKey: 'potLuckId', sourceKey: 'potLuckId', onDelete: 'cascade'});
       db.userPotluck.belongsTo(db.potluck, {foreignKey: 'potLuckId', sourceKey: 'potLuckId'});
 
       //potlucks to potLuckItems
-      db.potluck.hasMany(db.item, {foreignKey: 'potLuckId', sourceKey: 'potLuckId'});
+      db.potluck.hasMany(db.item, {foreignKey: 'potLuckId', sourceKey: 'potLuckId', onDelete: 'cascade'});
       db.item.belongsTo(db.potluck, {foreignKey: 'potLuckId', sourceKey: 'potLuckId'});
 
       //category to potLuckItems
-      db.category.hasMany(db.item, {foreignKey: 'categoryId', sourceKey: 'categoryId'});
+      db.category.hasMany(db.item, {foreignKey: 'categoryId', sourceKey: 'categoryId', onDelete: 'cascade'});
       db.item.belongsTo(db.category, {foreignKey: 'categoryId', sourceKey: 'categoryId'});
     },
 
@@ -185,16 +185,44 @@ var methods = {
       })
     },
 //////////////////////////////////////////////////////////////////////////////
-//                        Updateevent                                       //
+//                        Update Event                                      //
 //////////////////////////////////////////////////////////////////////////////
-    updateUser: function(fbID, fullName){
 
-    },
     updateEvent: function(eventID, object){
-
+      db.potlucks.update({
+        date: object.date,
+        startTime: object.startTime,
+        endTime: object.endTime,
+        location: object.location,
+        eventURL: object.eventURL,
+        phone: object.phone,
+        emial: object.email,
+        details: object.details
+      }, {
+        where: { potLuckId: eventID},
+      });
     },
     updateItem: function(itemID,object){
-
+      db.items.update({
+        assigned: object.assigned,
+        item_name: object.item_name,
+        notes: object.notes,
+        categoryId: object.categoryId
+      }, {
+        where : {itemID:itemID}
+      });
+    },
+//////////////////////////////////////////////////////////////////////////////
+//                       Delete Event                                       //
+/////////////////////////////////////////////////////////////////////////////
+    deleteUser: function(fbID) {
+      db.user.destroy();
+    },
+    deleteEvent: function(eventID) {
+      db.potluck.destroy();
+    },
+    deleteItem: function(itemID) {
+      db.item.destroy();
     }
 };
 

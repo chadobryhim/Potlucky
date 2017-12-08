@@ -7,7 +7,7 @@ var FB = require('fb');
 
 
 //This is to test login status
-var fbPackaging = {
+var checkLoginState = {
 
   login : function() {
         FB.login(function(response) {

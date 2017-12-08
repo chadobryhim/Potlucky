@@ -126,6 +126,7 @@ var methods = {
         userId: id,
         potLuckId: plID
       });
+      return plID;
     },
     //Creates a non Admin user to the table (currently the same as before but hopefully we can authenticate it)
     addUserPotluck : function(UId,PLId){
@@ -216,13 +217,13 @@ var methods = {
 //                       Delete Event                                       //
 /////////////////////////////////////////////////////////////////////////////
     deleteUser: function(fbID) {
-      db.user.destroy();
+    },
+    removeFromEvent: function (fbID) {
+
     },
     deleteEvent: function(eventID) {
-      db.potluck.destroy();
     },
     deleteItem: function(itemID) {
-      db.item.destroy();
     }
 };
 

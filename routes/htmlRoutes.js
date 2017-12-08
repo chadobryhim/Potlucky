@@ -81,10 +81,29 @@ module.exports = function(app) {
 //                        Update Methods                              //
 ////////////////////////////////////////////////////////////////////////
 
+	/////////////////////Creates a new event
+	app.post("/event/:eventId/update", function(req,res) {
+		dbMethod.updateEvent(req.params.eventId, req.body);
+		res.redirect("/event/"+req.params.eventId);
+	});
+
+	app.post("/event/:eventID/:itemId/update", function(req,res){
+		dbMethod.updateItem(req.params.itemID, req.body);
+		res.redirect("/event/"+req.params.eventId);
+	});
 /////////////////////////////////////////////////////////////////////////
 //                        Create Methods                            //
 ////////////////////////////////////////////////////////////////////////
+	app.post("/event/create/:fbId", function(req,res) {
+		dbMethod.createEvent(req.body,req.params.fbId)
+			.then(function(plID){
+				res.redirect("/event/"+plID);
+			});
 
+	});
+	app.post("/event/:eventId/item/create", function(req,res) {
+		dbMethod.create(req.body,req.params.eventId)
+	})
 /////////////////////////////////////////////////////////////////////////
 //                        Delete Methods                              //
 ////////////////////////////////////////////////////////////////////////

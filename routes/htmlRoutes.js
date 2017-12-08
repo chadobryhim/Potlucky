@@ -105,6 +105,9 @@ module.exports = function(app) {
 	/////////////////////Creates a New Item///////////////////////
 	app.post("/event/:eventId/item/create", function(req,res) {
 		dbMethod.create(req.body,req.params.eventId)
+		.then(function(plID){
+			res.redirect("/event/"+plID);
+		});
 	})
 /////////////////////////////////////////////////////////////////////////
 //                        Delete Methods                              //
@@ -124,6 +127,8 @@ module.exports = function(app) {
 		 dbMethod.deleteItem(req.params.itemID);
 		 res.redirect("/event/"+req.params.eventID);
 	 });
+
+	 //removes
 	 app.get("/destroy/:fbID/:eventID", function(req,res){
 		 dbMethod.removeFromEvent(req.params.fbID,req.params.eventID);
 		 res.redirect("/profile")

@@ -20,6 +20,8 @@ module.exports = function(sequelize, DataTypes) {
     notes: {
       type:DataTypes.TEXT
     }
+  },  {
+    timestamps: false
   });
   return Item;
 };

@@ -1,3 +1,10 @@
+//dependencies
+var express = require('express');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var exphbs = require('express-handlebars');
+var unique = require('uniq');
+
 //--handlebarsEvent--//
 window.onload = function() {
   //Grab the inline template

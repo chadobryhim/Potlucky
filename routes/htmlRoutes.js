@@ -8,7 +8,6 @@ module.exports = function(app) {
 		consule.log("going to /")
 	});
 
-	debugger;
 
 /////////////////////////////////////////////////////////////////////////////
 //                      Read Methods                                      //
@@ -60,7 +59,7 @@ module.exports = function(app) {
 	});
 
 	//pulls a specific event ID with a fb ID and grants admin privliage
-	app.get("/event/:eventID/:fbId", function(req, res) {
+	app.get("/event/:eventID/:fbId", function(req, res,next) {
 		var adminTest = false;
 		//tests for admin status
 		adminTest = dbMethod.adminTest(req.params.fbID, req.params.eventID);
@@ -70,7 +69,7 @@ module.exports = function(app) {
 	});
 
 	//login from a specifc event page
-	app.get("/event/:eventID/login/:fbId", function(req, res) {
+	app.get("/event/:eventID/login/:fbId", function(req, res,next) {
 		//need to get name from fb
 		var name = "test"
 		dbMethod.loginNTest(req.params.fbId,name);
@@ -82,12 +81,12 @@ module.exports = function(app) {
 ////////////////////////////////////////////////////////////////////////
 
 	///////////////////// Updates an Event///////////////////////
-	app.post("/event/:eventId/update", function(req,res) {
+	app.post("/event/:eventId/update", function(req,res,next) {
 		dbMethod.updateEvent(req.params.eventId, req.body);
 		res.redirect("/event/"+req.params.eventId);
 	});
 	/////////////////////Updates an Item///////////////////////
-	app.post("/event/:eventID/:itemId/update", function(req,res){
+	app.post("/event/:eventID/:itemId/update", function(req,res,next){
 		dbMethod.updateItem(req.params.itemID, req.body);
 		res.redirect("/event/"+req.params.eventId);
 	});

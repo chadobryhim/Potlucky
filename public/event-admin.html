@@ -137,9 +137,63 @@
         <h4 class="modal-title" id="myModalLabel">Get Started</h4>
       </div>
       <div class="modal-body">
-        Facebook Login
-				<br>Google Login
-				<br>Twitter Login
+        <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=641150372941911';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+					<script>
+  		window.fbAsyncInit = function() {
+    	FB.init({
+      		appId      : '641150372941911',
+      		cookie     : true,
+      		xfbml      : true,
+      		version    : 'v2.11'
+    	});
+
+    	FB.AppEvents.logPageView();
+
+			FB.Event.subscribe('xfbml.render', finished_rendering);
+
+
+  	};
+
+  		(function(d, s, id){
+     		var js, fjs = d.getElementsByTagName(s)[0];
+     		if (d.getElementById(id)) {return;}
+     		js = d.createElement(s); js.id = id;
+     		js.src = "https://connect.facebook.net/en_US/sdk.js";
+     		fjs.parentNode.insertBefore(js, fjs);
+   		}(document, 'script', 'facebook-jssdk'));
+
+	</script>
+
+
+<fb:login-button
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
+
+<br>
+<br>
+
+<div class="fb-login-button" data-width="30" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
+				<br>
+				<br>
+
+	<div
+		class="fb-login-button"
+		data-max-rows="1"
+		data-size="large"
+		data-button-type="continue_with"
+		data-show-faces="false"
+		data-auto-logout-link="true"
+		data-use-continue-as="true"
+		></div>
       </div>
     </div>
   </div>

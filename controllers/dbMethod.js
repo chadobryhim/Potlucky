@@ -31,7 +31,7 @@ var methods = {
 
     initTables : function(){
       //makes the initial table and makes sure it is the only stuff for it for both User type and categories
-      console.log("createing tables")
+
 
       db.userType.create({userType: "User"});
       db.userType.create({userType: "Admin"});
@@ -42,7 +42,23 @@ var methods = {
       db.category.create({category: "Desserts"});
       db.category.create({category: "Drinks"});
       db.category.create({category: "Other"});
-      console.log("built tables")
+
+    },
+
+    initDummies : function(){
+      db.user.create({fbID:"65498138498466", name:"Chad Mc'Irishman"});
+      db.user.create({fbID:"56486159844887", name:"Michael Von Germanboy"});
+      db.user.create({fbID:"56198465167986", name:"Rebecca IDK"});
+
+      db.potluck.create({date: 12-16-2017,startTime:"17:00",endTime:"22:00",location:"The Castle",eventURL:"Coolio.com",phone:9999999999,email:"McHop@yahoo.com",details:"a Rager to end all rages",staticURL:"af5e4wa9f8as1d5"});
+
+      db.item.create({assigned:"Rebbecca",item_name:"Quiche",notes:null,potLuckId: 1,categoryID:1})
+      db.item.create({assigned:"Michael",item_name:"Beer",notes:"None of the Cheap stuff",potLuckId: 1,categoryID:4})
+      db.item.create({assigned:"Chad",item_name:"Bacon",notes:"BAAAAACCCCCCCOOOOOONNNN",potLuckId: 1,categoryID:2})
+
+      db.userPotluck.create({userId:1,userTypeId:1,potLuckId:1});
+      db.userPotluck.create({userId:2,userTypeId:2,potLuckId:1});
+      db.userPotluck.create({userId:3,userTypeId:1,potLuckId:1});
     },
 //////////////////////////////////////////////////////////////////////////////
 //                        Testing and Random Generator                      //

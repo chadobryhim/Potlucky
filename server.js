@@ -18,7 +18,7 @@ var sequelizeConnection = models.sequelize;
 dbMethods.associate();
 
 
-sequelizeConnection.sync({force: true}).then(dbMethods.initTables);
+sequelizeConnection.sync({force: true}).then(dbMethods.initTables).then(dbMethods.initDummies);
 //////////////////////////////////////////////////////////////////////
 
 // Use express.static to serve the public folder as a static directory

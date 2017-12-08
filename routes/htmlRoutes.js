@@ -81,12 +81,12 @@ module.exports = function(app) {
 //                        Update Methods                              //
 ////////////////////////////////////////////////////////////////////////
 
-	/////////////////////Creates a new event
+	///////////////////// Updates an Event///////////////////////
 	app.post("/event/:eventId/update", function(req,res) {
 		dbMethod.updateEvent(req.params.eventId, req.body);
 		res.redirect("/event/"+req.params.eventId);
 	});
-
+	/////////////////////Updates an Item///////////////////////
 	app.post("/event/:eventID/:itemId/update", function(req,res){
 		dbMethod.updateItem(req.params.itemID, req.body);
 		res.redirect("/event/"+req.params.eventId);
@@ -94,13 +94,15 @@ module.exports = function(app) {
 /////////////////////////////////////////////////////////////////////////
 //                        Create Methods                            //
 ////////////////////////////////////////////////////////////////////////
+
+	///////////////////// Creates an Event///////////////////////
 	app.post("/event/create/:fbId", function(req,res) {
 		dbMethod.createEvent(req.body,req.params.fbId)
 			.then(function(plID){
 				res.redirect("/event/"+plID);
 			});
-
 	});
+	/////////////////////Creates a New Item///////////////////////
 	app.post("/event/:eventId/item/create", function(req,res) {
 		dbMethod.create(req.body,req.params.eventId)
 	})
@@ -112,12 +114,18 @@ module.exports = function(app) {
 		 dbMethod.deleteUser(req.params.fbID);
 		 res.redirect("/index");
 	 });
+	 ////////////Destroys a Specific event
 	 app.get("/destroy/:eventID", function(req,res) {
 		 dbMethod.deleteEvent(req.params.eventID);
-		 res.redirect("/index");
+		 res.redirect("/profile");
 	 });
-	 app.get("/destroy/:itemID", function(req,res) {
+	 ////Destroys a specific Item
+	 app.get("/destroy/:eventId/:itemID", function(req,res) {
 		 dbMethod.deleteItem(req.params.itemID);
-		 res.redirect("/index");
+		 res.redirect("/event/"+req.params.eventID);
 	 });
+	 app.get("/destroy/:fbID/:eventID", function(req,res){
+		 dbMethod.removeFromEvent(req.params.fbID,req.params.eventID);
+		 res.redirect("/profile")
+	 })
 }
